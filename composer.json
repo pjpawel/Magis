@@ -1,0 +1,29 @@
+{
+  "name": "pjpawel/magis",
+  "type": "library",
+  "description": "PHP templates engine",
+  "keywords": [
+    "templates"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Paweł Podgórski",
+      "email": "pawel.jan.podgorski@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=8.1"
+  },
+  "require-dev": {
+
+  },
+  "autoload": {
+    "psr-4": { "pjpawel\\Magis\\": "src" }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Test\\": "tests"
+    }
+  }
+}
