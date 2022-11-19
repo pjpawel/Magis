@@ -18,20 +18,19 @@ class View
         } else {
             $this->templatePath = $templatePath . '/';
         }
-
     }
 
-
-    public function render(string $template): string
+    /**
+     * @param string $template
+     * @param array $params
+     * @return string
+     * @throws TemplateException
+     */
+    public function render(string $template, array $params = []): string
     {
         $template = $this->loadTemplate($template);
 
-        return $this->renderPhpFile($template, ['title' => 'Title']);
-    }
-
-    public function extend(string $parent)
-    {
-        
+        return $this->renderPhpFile($template, $params);
     }
 
     /**
@@ -49,7 +48,7 @@ class View
      * @return bool|string
      * @throws TemplateException
      */
-    public function renderPhpFile(Template $template, array $params = []): bool|string
+    public function renderPhpFile(Template $template, array $params): bool|string
     {
         $_obInitialLevel_ = ob_get_level();
         ob_start();

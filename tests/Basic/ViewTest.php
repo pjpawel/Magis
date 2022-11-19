@@ -14,7 +14,7 @@ class ViewTest extends TestCase
     public function testSimpleView(): void
     {
         $view = new View(self::TEMPLATE_DIR);
-        $content = $view->render('base.php');
+        $content = $view->render('base.php', ['title' => 'Title']);
         $this->assertStringEqualsFile(self::HTML_DIR . '/base.html', $content);
     }
 }
