@@ -12,8 +12,14 @@ class ViewDispatcherService
 {
 
     private ?string $defaultViewClass = null;
+    /**
+     * @var string Absolute path to templates directory
+     */
     private string $templatePath;
-
+    /**
+     * @var array<string, object> Services to inject into view
+     */
+    private array $services;
     /**
      * Dispatcher options of views mode
      * All classes must implement ViewInterface
@@ -25,12 +31,14 @@ class ViewDispatcherService
     /**
      * @param string $viewMode
      * @param string $templatePath
+     * @param array $services
      * @throws TemplateException
      */
-    public function __construct(string $viewMode, string $templatePath)
+    public function __construct(string $viewMode, string $templatePath, array $services = [])
     {
         $this->setDefaultViewMode($viewMode);
         $this->templatePath = $templatePath;
+        $this->services = $services;
     }
 
     /**
@@ -46,6 +54,10 @@ class ViewDispatcherService
             $viewMode = $this->getDefaultViewMode();
         }
         $viewObject = new $viewMode($this->templatePath);
+
+        foreach ($this->services as $name => $service) {
+            $viewObject->addService($name, $service);
+        }
 
         return $viewObject->render($view, $params);
     }
@@ -83,6 +95,16 @@ class ViewDispatcherService
     public function setTemplatePath(string $templatePath): void
     {
         $this->templatePath = $templatePath;
+    }
+
+    /**
+     * @param string $name
+     * @param object $object
+     * @return void
+     */
+    public function addService(string $name, object $object): void
+    {
+        $this->services[$name] = $object;
     }
 
 }

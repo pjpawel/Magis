@@ -5,6 +5,7 @@ namespace pjpawel\Magis\Test;
 use PHPUnit\Framework\TestCase;
 use pjpawel\Magis\DirectView;
 use pjpawel\Magis\Exception\TemplateException;
+use pjpawel\Magis\Resources\EchoService;
 
 class DirectViewTest extends TestCase
 {
@@ -41,8 +42,17 @@ class DirectViewTest extends TestCase
         $this->assertStringEqualsFile(self::HTML_DIR . '/snippet.html', $content);
     }
 
-    public function testAutomaticSnippetView(): void
+    //TODO:
+    /*public function testAutomaticSnippetView(): void
     {
 
+    }*/
+
+    public function testEchoService()
+    {
+        $view = new DirectView(self::TEMPLATE_DIR . '/service');
+        $view->addService('echo', new EchoService());
+        $content = $view->render('base.php', ['title' => 'Title',]);
+        $this->assertStringEqualsFile(self::HTML_DIR . '/service.html', $content);
     }
 }

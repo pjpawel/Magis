@@ -23,7 +23,8 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "pjpawel\\Magis\\Test\\": "tests"
+      "pjpawel\\Magis\\Test\\": "tests",
+      "pjpawel\\Magis\\Resources\\": "resources"
     }
   },
   "scripts": {

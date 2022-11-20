@@ -71,4 +71,14 @@ class DirectView implements ViewInterface
         }
     }
 
+    /**
+     * @param string $name
+     * @param object $object
+     * @return void
+     */
+    public function addService(string $name, object $object): void
+    {
+        $this->$name = $object;
+    }
+
 }
