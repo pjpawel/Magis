@@ -1,5 +1,5 @@
 <?php
-/** @var $this pjpawel\Magis\View */
+/** @var $this pjpawel\Magis\DirectView */
 /** @var $title string */
 /** @var $body string */
 ?>
@@ -10,6 +10,6 @@
     <title><?php echo $title?></title>
 </head>
 <body>
-<?php $body ?>
+<?php echo $body ?>
 </body>
 </html>

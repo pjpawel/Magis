@@ -4,12 +4,11 @@ namespace pjpawel\Magis;
 
 use pjpawel\Magis\Exception\TemplateException;
 
-class View
+class DirectView implements ViewInterface
 {
 
     protected string $templatePath;
-    protected ?string $parent = null;
-    protected array $arguments = [];
+    protected array $params = [];
 
     public function __construct(string $templatePath)
     {
@@ -29,8 +28,9 @@ class View
     public function render(string $template, array $params = []): string
     {
         $template = $this->loadTemplate($template);
+        $this->params = array_merge_recursive($params, $this->params);
 
-        return $this->renderPhpFile($template, $params);
+        return $this->renderPhpFile($template, $this->params);
     }
 
     /**
@@ -48,7 +48,7 @@ class View
      * @return bool|string
      * @throws TemplateException
      */
-    public function renderPhpFile(Template $template, array $params): bool|string
+    private function renderPhpFile(Template $template, array $params): bool|string
     {
         $_obInitialLevel_ = ob_get_level();
         ob_start();
@@ -57,13 +57,17 @@ class View
         try {
             require $template->getTemplatePath();
             return ob_get_clean();
-        } catch (\Exception|\Throwable $e) {
+        } catch (\Throwable $e) {
             while (ob_get_level() > $_obInitialLevel_) {
                 if (!@ob_end_clean()) {
                     ob_clean();
                 }
             }
-            throw new TemplateException('Loading template exception', 0, $e);
+            $message = 'Loading template exception: ';
+            if (str_starts_with($e->getMessage(), $message)) {
+                $message = '';
+            }
+            throw new TemplateException($message . $e->getMessage(), 0, $e);
         }
     }
 
