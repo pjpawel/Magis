@@ -33,4 +33,16 @@ class DirectViewTest extends TestCase
         $view = new DirectView(self::TEMPLATE_DIR);
         $content = $view->render('index.php', ['title' => 'Title']);
     }
+
+    public function testManualSnippetView(): void
+    {
+        $view = new DirectView(self::TEMPLATE_DIR . '/snippet');
+        $content = $view->render('index.php', ['title' => 'Title', 'snippetName' => 'view snippet']);
+        $this->assertStringEqualsFile(self::HTML_DIR . '/snippet.html', $content);
+    }
+
+    public function testAutomaticSnippetView(): void
+    {
+
+    }
 }
