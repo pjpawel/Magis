@@ -5,6 +5,9 @@ namespace pjpawel\Magis\View;
 use pjpawel\Magis\Exception\TemplateException;
 use pjpawel\Magis\Template;
 
+/**
+ * @author Paweł Podgórski <pawel.jan.podgorski@gmail.com>
+ */
 abstract class AbstractView
 {
 

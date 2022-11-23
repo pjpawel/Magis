@@ -4,6 +4,9 @@ namespace pjpawel\Magis\View;
 
 use pjpawel\Magis\Helper\Tag;
 
+/**
+ * @author Paweł Podgórski <pawel.jan.podgorski@gmail.com>
+ */
 class MagicView extends AbstractView
 {
 

@@ -10,6 +10,8 @@ use pjpawel\Magis\View\MagicView;
 /**
  * Class provides dispatcher to different views class modes,
  * should be used as Service in Dependency Injection
+ *
+ * @author Paweł Podgórski <pawel.jan.podgorski@gmail.com>
  */
 class ViewDispatcherService
 {

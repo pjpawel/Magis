@@ -4,6 +4,9 @@ namespace pjpawel\Magis;
 
 use pjpawel\Magis\Exception\TemplateException;
 
+/**
+ * @author Paweł Podgórski <pawel.jan.podgorski@gmail.com>
+ */
 class Template
 {
 
