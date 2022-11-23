@@ -3,6 +3,7 @@
 namespace pjpawel\Magis;
 
 use pjpawel\Magis\Exception\TemplateException;
+use pjpawel\Magis\View\AbstractView;
 use pjpawel\Magis\View\DirectView;
 
 /**
@@ -99,8 +100,8 @@ class ViewDispatcherService
         } else {
             throw new TemplateException('Unknown view mode ' . $mode);
         }
-        if (!is_subclass_of($class, ViewInterface::class)) {
-            throw new TemplateException("View mode doesn't implements " . ViewInterface::class);
+        if (!is_subclass_of($class, AbstractView::class)) {
+            throw new TemplateException("View mode doesn't inherit from " . AbstractView::class);
         }
         return $class;
     }
