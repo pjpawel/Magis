@@ -30,6 +30,10 @@ class ViewDispatcherService
     public const VIEW_MODE = [
         'direct' => DirectView::class,
     ];
+    /**
+     * Allows to pass php template name without extension
+     */
+    private const DEFAULT_EXTENSION = '.php';
 
     /**
      * @param string $viewMode
@@ -59,6 +63,8 @@ class ViewDispatcherService
         } else {
             $viewClass = $this->getViewClassFromMode($viewMode);
         }
+        $this->ensureTemplateNameHasExtension($templateName);
+
         $view = new $viewClass($this->templatePath);
 
         foreach ($this->services as $name => $service) {
@@ -130,6 +136,13 @@ class ViewDispatcherService
     public function addService(string $alias, object $object): void
     {
         $this->services[$alias] = $object;
+    }
+
+    protected function ensureTemplateNameHasExtension(string &$templateName): void
+    {
+        if (!str_ends_with($templateName, self::DEFAULT_EXTENSION)) {
+            $templateName .= self::DEFAULT_EXTENSION;
+        }
     }
 
 }

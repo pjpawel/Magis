@@ -34,4 +34,11 @@ class ViewDispatcherServiceTest extends TestCase
         $this->expectExceptionMessage('Unknown view mode ' . $modeName);
         $viewService = new ViewDispatcherService($modeName, self::TEMPLATE_DIR);
     }
+
+    public function testTemplateNameWithoutExtension(): void
+    {
+        $viewService = new ViewDispatcherService(DirectView::class, self::TEMPLATE_DIR);
+        $index = $viewService->render('index', ['title' => 'Title', 'body' => null]);
+        $this->assertStringEqualsFile(self::HTML_DIR . '/base.html', $index);
+    }
 }
