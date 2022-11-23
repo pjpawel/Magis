@@ -20,7 +20,7 @@ class ViewDispatcherService
     /**
      * @var string Absolute path to templates directory
      */
-    private string $templatePath;
+    private string $templateDir;
     /**
      * @var array<string, object> Services to inject into view
      */
@@ -39,14 +39,14 @@ class ViewDispatcherService
 
     /**
      * @param string $viewMode
-     * @param string $templatePath
+     * @param string $templateDir
      * @param array $services
      * @throws TemplateException
      */
-    public function __construct(string $viewMode, string $templatePath, array $services = [])
+    public function __construct(string $viewMode, string $templateDir, array $services = [])
     {
         $this->setDefaultViewMode($viewMode);
-        $this->templatePath = $templatePath;
+        $this->templateDir = $templateDir;
         $this->services = $services;
     }
 
@@ -67,7 +67,7 @@ class ViewDispatcherService
         }
         $this->ensureTemplateNameHasExtension($templateName);
 
-        $view = new $viewClass($this->templatePath);
+        $view = new $viewClass($this->templateDir);
 
         foreach ($this->services as $name => $service) {
             $view->addService($name, $service);
@@ -115,19 +115,19 @@ class ViewDispatcherService
     }
 
     /**
-     * @param string $templatePath
+     * @param string $templateDir
      */
-    public function setTemplatePath(string $templatePath): void
+    public function setTemplateDir(string $templateDir): void
     {
-        $this->templatePath = $templatePath;
+        $this->templateDir = $templateDir;
     }
 
     /**
      * @return string
      */
-    public function getTemplatePath(): string
+    public function getTemplateDir(): string
     {
-        return $this->templatePath;
+        return $this->templateDir;
     }
 
     /**
