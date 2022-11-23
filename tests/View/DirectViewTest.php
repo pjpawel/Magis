@@ -1,6 +1,6 @@
 <?php
 
-namespace pjpawel\Magis\Test;
+namespace pjpawel\Magis\Test\View;
 
 use PHPUnit\Framework\TestCase;
 use pjpawel\Magis\Exception\TemplateException;
@@ -10,8 +10,8 @@ use pjpawel\Magis\View\DirectView;
 class DirectViewTest extends TestCase
 {
 
-    public const TEMPLATE_DIR = __DIR__ . '/../resources/php';
-    public const HTML_DIR = __DIR__ . '/../resources/html';
+    public const TEMPLATE_DIR = __DIR__ . '/../../resources/php';
+    public const HTML_DIR = __DIR__ . '/../../resources/html';
 
     public function testSimpleView(): void
     {
