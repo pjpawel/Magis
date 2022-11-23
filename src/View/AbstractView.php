@@ -8,15 +8,15 @@ use pjpawel\Magis\Template;
 abstract class AbstractView
 {
 
-    protected string $templatePath;
+    protected string $templateDir;
     protected array $params = [];
 
-    public function __construct(string $templatePath)
+    public function __construct(string $templateDir)
     {
-        if (str_ends_with($templatePath, '/')) {
-            $this->templatePath = $templatePath;
+        if (str_ends_with($templateDir, '/')) {
+            $this->templateDir = $templateDir;
         } else {
-            $this->templatePath = $templatePath . '/';
+            $this->templateDir = $templateDir . '/';
         }
     }
 
@@ -34,7 +34,7 @@ abstract class AbstractView
      */
     protected function loadTemplate(string $template): Template
     {
-        return new Template($this->templatePath . $template);
+        return new Template($this->templateDir . $template);
     }
 
     /**
