@@ -11,6 +11,9 @@ use pjpawel\Magis\Exception\TemplateException;
 class ViewDispatcherService
 {
 
+    /**
+     * @var string|null Class namespace
+     */
     private ?string $defaultViewClass = null;
     /**
      * @var string Absolute path to templates directory
@@ -42,24 +45,27 @@ class ViewDispatcherService
     }
 
     /**
-     * @param string $view
-     * @param array $params
-     * @param string|null $viewMode
-     * @return string
+     * @param string $templateName Template name e.g. 'index.php'
+     * @param array<string, mixed> $params Params that will be used as variables.
+     *  Key will be used as variable name, and value as var value
+     * @param string|null $viewMode Set different view mode
+     * @return string Rendered content
      * @throws TemplateException
      */
-    public function render(string $view, array $params = [], ?string $viewMode = null): string
+    public function render(string $templateName, array $params = [], ?string $viewMode = null): string
     {
         if ($viewMode === null) {
-            $viewMode = $this->getDefaultViewMode();
+            $viewClass = $this->getDefaultViewClass();
+        } else {
+            $viewClass = $this->getViewClassFromMode($viewMode);
         }
-        $viewObject = new $viewMode($this->templatePath);
+        $view = new $viewClass($this->templatePath);
 
         foreach ($this->services as $name => $service) {
-            $viewObject->addService($name, $service);
+            $view->addService($name, $service);
         }
 
-        return $viewObject->render($view, $params);
+        return $view->render($templateName, $params);
     }
 
     /**
@@ -69,22 +75,33 @@ class ViewDispatcherService
      */
     public function setDefaultViewMode(string $mode): void
     {
+        $this->defaultViewClass = $this->getViewClassFromMode($mode);
+    }
+
+    /**
+     * @param $mode
+     * @return string
+     * @throws TemplateException
+     */
+    protected function getViewClassFromMode($mode): string
+    {
         if (isset(self::VIEW_MODE[$mode])) {
-            $this->defaultViewClass = self::VIEW_MODE[$mode];
+            $class = self::VIEW_MODE[$mode];
         } elseif (false !== $key = array_search($mode, self::VIEW_MODE)) {
-            $this->defaultViewClass = self::VIEW_MODE[$key];
+            $class = self::VIEW_MODE[$key];
         } else {
             throw new TemplateException('Unknown view mode ' . $mode);
         }
-        if (!is_subclass_of($this->defaultViewClass, ViewInterface::class)) {
+        if (!is_subclass_of($class, ViewInterface::class)) {
             throw new TemplateException("View mode doesn't implements " . ViewInterface::class);
         }
+        return $class;
     }
 
     /**
      * @return string
      */
-    public function getDefaultViewMode(): string
+    public function getDefaultViewClass(): string
     {
         return $this->defaultViewClass;
     }
@@ -98,13 +115,21 @@ class ViewDispatcherService
     }
 
     /**
-     * @param string $name
+     * @return string
+     */
+    public function getTemplatePath(): string
+    {
+        return $this->templatePath;
+    }
+
+    /**
+     * @param string $alias
      * @param object $object
      * @return void
      */
-    public function addService(string $name, object $object): void
+    public function addService(string $alias, object $object): void
     {
-        $this->services[$name] = $object;
+        $this->services[$alias] = $object;
     }
 
 }
