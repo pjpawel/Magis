@@ -23,7 +23,7 @@ composer require pjpawel/magis
 
 ```php
 \pjpawel\Magis\ViewDispatcherService::class //service to dependency injection
-\pjpawel\Magis\DirectView::class //view class that has method render() to ... render template :)
+\pjpawel\Magis\View\DirectView::class //view class that has method render() to ... render template :)
 ```
 
 ## Usage

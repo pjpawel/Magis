@@ -1,5 +1,5 @@
 <?php
-/** @var $this pjpawel\Magis\DirectView */
+/** @var $this \pjpawel\Magis\View\DirectView */
 /** @var $title string */
 /** @var $snippetName string */
 ?>

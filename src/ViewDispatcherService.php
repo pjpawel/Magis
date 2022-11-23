@@ -3,6 +3,7 @@
 namespace pjpawel\Magis;
 
 use pjpawel\Magis\Exception\TemplateException;
+use pjpawel\Magis\View\DirectView;
 
 /**
  * Class provides dispatcher to different views class modes,

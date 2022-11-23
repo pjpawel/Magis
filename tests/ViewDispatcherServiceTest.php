@@ -3,8 +3,8 @@
 namespace pjpawel\Magis\Test;
 
 use PHPUnit\Framework\TestCase;
-use pjpawel\Magis\DirectView;
 use pjpawel\Magis\Exception\TemplateException;
+use pjpawel\Magis\View\DirectView;
 use pjpawel\Magis\ViewDispatcherService;
 
 class ViewDispatcherServiceTest extends TestCase

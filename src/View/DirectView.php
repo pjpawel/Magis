@@ -1,8 +1,10 @@
 <?php
 
-namespace pjpawel\Magis;
+namespace pjpawel\Magis\View;
 
 use pjpawel\Magis\Exception\TemplateException;
+use pjpawel\Magis\Template;
+use pjpawel\Magis\ViewInterface;
 
 class DirectView implements ViewInterface
 {

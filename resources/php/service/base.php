@@ -1,5 +1,5 @@
 <?php
-/** @var $this pjpawel\Magis\DirectView */
+/** @var $this \pjpawel\Magis\View\DirectView */
 ?>
 <!DOCTYPE html>
 <html lang="en">
