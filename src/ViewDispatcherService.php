@@ -5,6 +5,7 @@ namespace pjpawel\Magis;
 use pjpawel\Magis\Exception\TemplateException;
 use pjpawel\Magis\View\AbstractView;
 use pjpawel\Magis\View\DirectView;
+use pjpawel\Magis\View\MagicView;
 
 /**
  * Class provides dispatcher to different views class modes,
@@ -31,6 +32,7 @@ class ViewDispatcherService
      */
     public const VIEW_MODE = [
         'direct' => DirectView::class,
+        'magic' => MagicView::class,
     ];
     /**
      * Allows to pass php template name without extension

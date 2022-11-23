@@ -77,6 +77,10 @@ class MagicView extends AbstractView
         }
     }
 
+    /**
+     * @param string $language
+     * @return void
+     */
     public function setLanguage(string $language): void
     {
         $this->language = $language;
@@ -108,6 +112,7 @@ class MagicView extends AbstractView
 
     /**
      * @param string $title
+     * @return void
      */
     public function setTitle(string $title): void
     {
