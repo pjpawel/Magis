@@ -10,6 +10,6 @@
     <title><?php echo $title?></title>
 </head>
 <body>
-<?php include ('snippet.php')?>
+<?php include('snippet.php') ?>
 </body>
 </html>

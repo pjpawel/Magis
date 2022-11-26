@@ -65,7 +65,7 @@ class ViewDispatcherService
     public function render(string $templateName, array $params = [], ?string $viewMode = null): string
     {
         if ($viewMode === null) {
-            $viewClass = $this->getDefaultViewClass();
+            $viewClass = $this->defaultViewClass;
         } else {
             $viewClass = $this->getViewClassFromMode($viewMode);
         }
@@ -135,15 +135,25 @@ class ViewDispatcherService
     }
 
     /**
+     * Service can be passed as :
+     *  object: it will be passed directly
+     *  string: service will be given from container //NOT NOW!
+     *
      * @param string $alias
-     * @param object $object
+     * @param object $object   // Object or alias from container
      * @return void
      */
-    public function addService(string $alias, object $object): void
+    public function addService(string $alias, object$object): void
     {
         $this->services[$alias] = $object;
     }
 
+    /**
+     * Provide possibility to pass name of template without php extension
+     *
+     * @param string $templateName
+     * @return void
+     */
     protected function ensureTemplateNameHasExtension(string &$templateName): void
     {
         if (!str_ends_with($templateName, self::DEFAULT_EXTENSION)) {

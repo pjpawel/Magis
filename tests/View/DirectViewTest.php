@@ -10,8 +10,8 @@ use pjpawel\Magis\View\DirectView;
 class DirectViewTest extends TestCase
 {
 
-    public const TEMPLATE_DIR = __DIR__ . '/../../resources/php';
-    public const HTML_DIR = __DIR__ . '/../../resources/html';
+    public const TEMPLATE_DIR = __DIR__ . '/../resources/php/direct';
+    public const HTML_DIR = __DIR__ . '/../resources/html';
 
     public function testSimpleView(): void
     {
@@ -50,6 +50,7 @@ class DirectViewTest extends TestCase
 
     public function testEchoService()
     {
+        include __DIR__ . '/../resources/EchoService.php';
         $view = new DirectView(self::TEMPLATE_DIR . '/service');
         $view->addService('echo', new EchoService());
         $content = $view->render('base.php', ['title' => 'Title',]);
