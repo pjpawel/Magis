@@ -32,7 +32,7 @@ class Template
      */
     public function getTemplateContent(): string
     {
-        if ($this->content == null) {
+        if ($this->content === null) {
             $this->loadTemplateContent();
         }
         return $this->content;
@@ -52,6 +52,11 @@ class Template
             throw new TemplateException('Cannot get content of template');
         }
         $this->content = $content;
+    }
+
+    public static function resolveTemplatePath(string $directory, string $name): string
+    {
+        return $directory . $name;
     }
 
 }
