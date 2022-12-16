@@ -14,6 +14,16 @@ class ViewDispatcherServiceTest extends TestCase
     public const HTML_DIR = __DIR__ . '/resources/html';
     public const DIRECT_DIR = '/direct/';
 
+    public static function setUpBeforeClass(): void
+    {
+        UtilsTest::ensureLogFileExists();
+    }
+
+    public function saveTimeStatistics(string $method, float $time): void
+    {
+        UtilsTest::log('', sprintf('%s Rendering time was equal to %s', $method, $time));
+    }
+
     public function testServiceDispatcherDirectView(): void
     {
         $viewService = new ViewDispatcherService('direct', self::TEMPLATE_DIR . self::DIRECT_DIR);
@@ -23,7 +33,7 @@ class ViewDispatcherServiceTest extends TestCase
         $index = $viewService->render('index.php', ['title' => 'Title', 'body' => null]);
 
         $time = microtime(true) - $start;
-        $this->assertLessThanOrEqual(0.001, $time);
+        $this->saveTimeStatistics(__METHOD__, $time);
 
         $this->assertStringEqualsFile(self::HTML_DIR . '/base.html', $index);
     }
@@ -37,7 +47,7 @@ class ViewDispatcherServiceTest extends TestCase
         $index = $viewService->render('index.php', ['title' => 'Title', 'body' => null]);
 
         $time = microtime(true) - $start;
-        $this->assertLessThanOrEqual(0.001, $time);
+        $this->saveTimeStatistics(__METHOD__, $time);
 
         $this->assertStringEqualsFile(self::HTML_DIR . '/base.html', $index);
     }
@@ -59,7 +69,7 @@ class ViewDispatcherServiceTest extends TestCase
         $index = $viewService->render('index', ['title' => 'Title', 'body' => null]);
 
         $time = microtime(true) - $start;
-        $this->assertLessThanOrEqual(0.001, $time);
+        $this->saveTimeStatistics(__METHOD__, $time);
 
         $this->assertStringEqualsFile(self::HTML_DIR . '/base.html', $index);
     }
