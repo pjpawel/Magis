@@ -41,19 +41,19 @@ abstract class AbstractView
     }
 
     /**
-     * @param Template $template
+     * @param string $templatePath
      * @param array $params
      * @return bool|string
      * @throws TemplateException
      */
-    protected function renderPhpFile(Template $template, array $params): bool|string
+    protected function renderPhpFile(string $templatePath, array $params): bool|string
     {
         $_obInitialLevel_ = ob_get_level();
         ob_start();
         ob_implicit_flush(false);
         extract($params, EXTR_OVERWRITE);
         try {
-            require $template->getTemplatePath();
+            require $templatePath;
             return ob_get_clean();
         } catch (\Throwable $e) {
             while (ob_get_level() > $_obInitialLevel_) {
