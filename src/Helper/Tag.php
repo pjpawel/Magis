@@ -13,13 +13,10 @@ class Tag extends AbstractComponent
     public function __construct(string $tagName, array|string $properties = [])
     {
         if (is_array($properties)) {
-            $propertiesTransformed = [];
-            foreach ($properties as $key => $value) {
-                $propertiesTransformed[] = $key . '="' . $value . '"';
-            }
-            $properties = implode(' ', $propertiesTransformed);
+            $this->text = Html::tag($tagName, $properties);
+        } else {
+            $this->text = '<' . $tagName . ' ' . $properties . '>';
         }
-        $this->text = '<' . $tagName . ' ' . $properties . '>';
     }
 
     public function show(): string
