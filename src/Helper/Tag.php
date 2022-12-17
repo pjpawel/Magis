@@ -5,12 +5,26 @@ namespace pjpawel\Magis\Helper;
 /**
  * @author Paweł Podgórski <pawel.jan.podgorski@gmail.com>
  */
-class Tag implements ComponentInterface
+class Tag extends AbstractComponent
 {
+
+    private string $text;
+
+    public function __construct(string $tagName, array|string $properties = [])
+    {
+        if (is_array($properties)) {
+            $propertiesTransformed = [];
+            foreach ($properties as $key => $value) {
+                $propertiesTransformed[] = $key . '="' . $value . '"';
+            }
+            $properties = implode(' ', $propertiesTransformed);
+        }
+        $this->text = '<' . $tagName . ' ' . $properties . '>';
+    }
 
     public function show(): string
     {
-        // TODO: Implement show() method.
+        return $this->text;
     }
 
 }
