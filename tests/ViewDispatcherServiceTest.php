@@ -7,6 +7,9 @@ use pjpawel\Magis\Exception\TemplateException;
 use pjpawel\Magis\View\DirectView;
 use pjpawel\Magis\ViewDispatcherService;
 
+/**
+ * @covers \pjpawel\Magis\ViewDispatcherService
+ */
 class ViewDispatcherServiceTest extends TestCase
 {
 
