@@ -71,12 +71,11 @@ class ViewDispatcherService
         }
         $this->ensureTemplateNameHasExtension($templateName);
 
+        /** @var AbstractView $view */
         $view = new $viewClass($this->templateDir);
-
         foreach ($this->services as $name => $service) {
             $view->addService($name, $service);
         }
-
         return $view->render($templateName, $params);
     }
 
@@ -140,10 +139,10 @@ class ViewDispatcherService
      *  string: service will be given from container //NOT NOW!
      *
      * @param string $alias
-     * @param object $object   // Object or alias from container
+     * @param object $object // Object or alias from container
      * @return void
      */
-    public function addService(string $alias, object$object): void
+    public function addService(string $alias, object $object): void
     {
         $this->services[$alias] = $object;
     }
