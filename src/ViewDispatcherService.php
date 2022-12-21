@@ -17,9 +17,9 @@ class ViewDispatcherService
 {
 
     /**
-     * @var string|null Class namespace
+     * @var string Class namespace
      */
-    private ?string $defaultViewClass = null;
+    private string $defaultViewClass;
     /**
      * @var string Absolute path to templates directory
      */
