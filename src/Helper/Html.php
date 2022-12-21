@@ -8,20 +8,30 @@ namespace pjpawel\Magis\Helper;
 class Html
 {
 
-    public static function a(string $href, array $properties = []): string
+    public const OPEN_TAG = '<';
+    public const END_TAG = '>';
+    public const VALUE_OPEN_END_TAG = '</';
+
+    public static function a(string $href, ?string $value = null, array $properties = []): string
     {
         $properties['href'] = $href;
-        return self::tag('a', $properties);
+        return self::tag('a', $value, $properties);
     }
 
-    public static function tag(string $name, array $properties = []): string
+    public static function tag(string $name, ?string $value = null, array|string $properties = []): string
     {
-        $propertiesTransformed = [];
-        foreach ($properties as $key => $value) {
-            $propertiesTransformed[] = $key . '="' . $value . '"';
+        if (is_array($properties)) {
+            $propertiesTransformed = [];
+            foreach ($properties as $key => $property) {
+                $propertiesTransformed[] = $key . '="' . $property . '"';
+            }
+            $properties = implode(' ', $propertiesTransformed);
         }
-        $properties = implode(' ', $propertiesTransformed);
-        return '<' . $name . ' ' . $properties . '>';
+        $tag = self::OPEN_TAG . $name . ' ' . $properties . self::END_TAG;
+        if ($value !== null) {
+            $tag .= $value . self::VALUE_OPEN_END_TAG . $name . self::END_TAG;
+        }
+        return $tag;
     }
 
 }
