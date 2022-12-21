@@ -1,6 +1,6 @@
 <?php
 
-namespace pjpawel\Magis\Resources;
+namespace pjpawel\Magis\Test\Resources;
 
 class EchoService
 {
