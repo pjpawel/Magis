@@ -1,0 +1,8 @@
+parameters:
+    level: 4
+    paths:
+        - src/
+        - tests/
+    excludePaths:
+        - tests/resources/html/*
+        - tests/resources/php/*

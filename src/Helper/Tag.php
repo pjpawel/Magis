@@ -10,7 +10,7 @@ class Tag implements ComponentInterface
 
     public function show(): string
     {
-        // TODO: Implement show() method.
+        return '';
     }
 
 }
