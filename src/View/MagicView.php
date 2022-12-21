@@ -62,7 +62,7 @@ class MagicView extends AbstractView
             Event::BeforeRun,
             function (MagicView $view) {
                 $view->content .= '<!DOCTYPE html><html lang="' . $view->loadLanguage() . '">';
-                $view->content .= '<head><title>' . $view->getTitle() . '</title><meta charset="' . $view->getCharset() .'">';
+                $view->content .= '<head><title>' . $view->getTitle() . '</title><meta charset="' . $view->getCharset() . '">';
                 foreach ($view->getHeadTags() as $tag) {
                     $view->content .= $tag->show() . PHP_EOL;
                 }
@@ -196,7 +196,7 @@ class MagicView extends AbstractView
     public function clear(): void
     {
         $this->headTags = [];
-        $this->jsFiles= [];
+        $this->jsFiles = [];
         $this->cssFiles = [];
         $this->jsBlocks = [];
         $this->cssBlocks = [];
