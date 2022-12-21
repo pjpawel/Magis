@@ -1,6 +1,9 @@
 # Magis
 
-*Services for symfony bundle for php templates rendering*
+### *Services for symfony bundle for php templates rendering*
+
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/pjpawel/magis.svg?style=flat-square)](https://packagist.org/packages/pjpawel/magis)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/pjpawel/Magis/badges/quality-score.png?b=dev)](https://scrutinizer-ci.com/g/pjpawel/Magis/?branch=dev)
 
 ## Why Magis?
 ### - It's incredible fast!
