@@ -14,7 +14,7 @@ abstract class AbstractComponent implements ComponentInterface
      */
     public static function createAndShow(mixed ...$args): string
     {
-        /** @var array<int|mixed> $args */
+        /** @var array<int,mixed> $args */
         $component = new \ReflectionClass(static::class);
         $componentObject = $component->newInstanceArgs($args);
         /** @var static $componentObject */
