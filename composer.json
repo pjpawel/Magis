@@ -28,7 +28,11 @@
     }
   },
   "scripts": {
-    "test": "vendor/bin/phpunit .",
-    "stan": "vendor/bin/phpstan analyse"
+    "unit": "vendor/bin/phpunit .",
+    "stan": "vendor/bin/phpstan analyse",
+    "all": [
+      "@unit",
+      "@stan"
+    ]
   }
 }
