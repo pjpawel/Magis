@@ -8,17 +8,26 @@ use pjpawel\Magis\Helper\Style;
 class StyleTest extends TestCase
 {
 
-    public function testShow(): void
-    {
-        $css = <<<CSS
+    private const CSS = <<<CSS
             .style-to-block {
                 overflow: auto;
             }
             CSS;
-        $style = new Style($css);
+
+    public function testShow(): void
+    {
+        $style = new Style(self::CSS);
         $this->assertEquals(
-            '<style>' . $css . '</style>',
+            '<style>' . self::CSS . '</style>',
             $style->show()
+        );
+    }
+
+    public function testCreateAndShow(): void
+    {
+        $this->assertEquals(
+            '<style>' . self::CSS . '</style>',
+            Style::createAndShow(self::CSS)
         );
     }
 
