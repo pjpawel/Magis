@@ -11,7 +11,7 @@ class Template
 {
 
     private string $templatePath;
-    private ?string $content = null;
+    private string $content;
 
     public function __construct(string $templatePath)
     {
@@ -32,7 +32,7 @@ class Template
      */
     public function getTemplateContent(): string
     {
-        if ($this->content === null) {
+        if (isset($this->content)) {
             $this->loadTemplateContent();
         }
         return $this->content;

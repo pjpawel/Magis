@@ -17,6 +17,7 @@ abstract class AbstractComponent implements ComponentInterface
         /** @var array<int|mixed> $args */
         $component = new \ReflectionClass(static::class);
         $componentObject = $component->newInstanceArgs($args);
-        return $component->getMethod('show')->invoke($componentObject);
+        /** @var static $componentObject */
+        return $componentObject->show();
     }
 }
