@@ -12,6 +12,9 @@ abstract class AbstractView
 {
 
     protected string $templateDir;
+    /**
+     * @var array<string,mixed>
+     */
     protected array $params = [];
 
     public function __construct(string $templateDir)
@@ -25,7 +28,7 @@ abstract class AbstractView
 
     /**
      * @param string $template
-     * @param array $params
+     * @param array<string,mixed> $params
      * @return string
      * @throws TemplateException
      */
@@ -42,7 +45,7 @@ abstract class AbstractView
 
     /**
      * @param Template $template
-     * @param array $params
+     * @param array<string,mixed> $params
      * @return bool|string
      * @throws TemplateException
      */
