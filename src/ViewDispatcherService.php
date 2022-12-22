@@ -71,6 +71,7 @@ class ViewDispatcherService
         }
         $this->ensureTemplateNameHasExtension($templateName);
 
+        /** @var AbstractView $view */
         $view = new $viewClass($this->templateDir);
 
         foreach ($this->services as $name => $service) {
