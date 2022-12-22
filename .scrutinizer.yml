@@ -17,7 +17,7 @@ build:
                 override:
                     - command: composer coverage
                         coverage:
-                            file: coverage.xml
+                            file: 'coverage.xml'
                             format: clover
 filter:
     excluded_paths:
