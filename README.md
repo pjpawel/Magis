@@ -4,6 +4,7 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/pjpawel/magis.svg?style=flat-square)](https://packagist.org/packages/pjpawel/magis)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/pjpawel/Magis/badges/quality-score.png?b=dev)](https://scrutinizer-ci.com/g/pjpawel/Magis/?branch=dev)
+![PHPStanLevel](https://img.shields.io/badge/PHPStan-level%205-brightgreen.svg?style=flat)
 
 ## Why Magis?
 ### - It's incredible fast!
