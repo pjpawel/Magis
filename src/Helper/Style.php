@@ -19,9 +19,4 @@ class Style extends AbstractComponent
     {
         return '<style>' . $this->style . '</style>';
     }
-
-    public static function new(string $style): self
-    {
-        return new self($style);
-    }
 }
