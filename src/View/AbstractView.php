@@ -2,6 +2,7 @@
 
 namespace pjpawel\Magis\View;
 
+use _PHPStan_5c71ab23c\Nette\Neon\Exception;
 use pjpawel\Magis\Exception\TemplateException;
 use pjpawel\Magis\Template;
 
@@ -12,6 +13,9 @@ abstract class AbstractView
 {
 
     protected string $templateDir;
+    /**
+     * @var array<string,mixed>
+     */
     protected array $params = [];
 
     public function __construct(string $templateDir)
@@ -25,7 +29,7 @@ abstract class AbstractView
 
     /**
      * @param string $template
-     * @param array $params
+     * @param array<string,mixed> $params
      * @return string
      * @throws TemplateException
      */
@@ -54,7 +58,11 @@ abstract class AbstractView
         extract($params, EXTR_OVERWRITE);
         try {
             require $templatePath;
-            return ob_get_clean();
+            $buffer = ob_get_clean();
+            if ($buffer === false) {
+                throw new Exception('Buffer is not active');
+            }
+            return $buffer;
         } catch (\Throwable $e) {
             while (ob_get_level() > $_obInitialLevel_) {
                 if (!@ob_end_clean()) {

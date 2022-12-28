@@ -12,10 +12,7 @@ class DirectView extends AbstractView
 {
 
     /**
-     * @param string $template
-     * @param array $params
-     * @return string
-     * @throws TemplateException
+     * @inheritDoc
      */
     public function render(string $template, array $params = []): string
     {

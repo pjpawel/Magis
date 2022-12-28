@@ -19,9 +19,4 @@ class Script extends AbstractComponent
     {
         return '<script>' . $this->script . '</script>';
     }
-
-    public static function new(string $script): self
-    {
-        return new self($script);
-    }
 }
