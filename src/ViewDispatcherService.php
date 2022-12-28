@@ -17,9 +17,9 @@ class ViewDispatcherService
 {
 
     /**
-     * @var string|null Class namespace
+     * @var string Class namespace
      */
-    private ?string $defaultViewClass = null;
+    private string $defaultViewClass;
     /**
      * @var string Absolute path to templates directory
      */
@@ -44,7 +44,7 @@ class ViewDispatcherService
     /**
      * @param string $viewMode
      * @param string $templateDir
-     * @param array $services
+     * @param array<string, object> $services
      * @throws TemplateException
      */
     public function __construct(string $viewMode, string $templateDir, array $services = [])
@@ -71,6 +71,7 @@ class ViewDispatcherService
         }
         $this->ensureTemplateNameHasExtension($templateName);
 
+        /** @var AbstractView $view */
         $view = new $viewClass($this->templateDir);
 
         foreach ($this->services as $name => $service) {
@@ -91,11 +92,11 @@ class ViewDispatcherService
     }
 
     /**
-     * @param $mode
+     * @param string $mode
      * @return string
      * @throws TemplateException
      */
-    protected function getViewClassFromMode($mode): string
+    protected function getViewClassFromMode(string $mode): string
     {
         if (isset(self::VIEW_MODE[$mode])) {
             $class = self::VIEW_MODE[$mode];

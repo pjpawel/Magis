@@ -7,11 +7,17 @@ abstract class AbstractComponent implements ComponentInterface
 
     abstract public function show(): string;
 
-    public static function createAndShow(...$args): string
+    /**
+     * @param mixed ...$args
+     * @return string
+     * @throws \ReflectionException
+     */
+    public static function createAndShow(mixed ...$args): string
     {
-        //$args = func_get_args();
+        /** @var array<int,mixed> $args */
         $component = new \ReflectionClass(static::class);
         $componentObject = $component->newInstanceArgs($args);
-        return $component->getMethod('show')->invoke($componentObject);
+        /** @var static $componentObject */
+        return $componentObject->show();
     }
 }

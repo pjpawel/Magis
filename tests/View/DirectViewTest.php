@@ -48,7 +48,7 @@ class DirectViewTest extends TestCase
 
     }*/
 
-    public function testEchoService()
+    public function testEchoService(): void
     {
         include __DIR__ . '/../resources/EchoService.php';
         $view = new DirectView(self::TEMPLATE_DIR . '/service');
