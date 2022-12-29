@@ -26,8 +26,9 @@ composer require pjpawel/magis
 ## Library classes
 
 ```php
-\pjpawel\Magis\ViewDispatcherService::class //service to dependency injection
-\pjpawel\Magis\View\DirectView::class //view class that has method render() to ... render template :)
+\pjpawel\Magis\ViewDispatcherService::class // service to dependency injection
+\pjpawel\Magis\View\DirectView::class // simple view class that has method render() to ... render template :)
+\pjpawel\Magis\View\MagicView::class // rich view class
 ```
 
 ## Usage
