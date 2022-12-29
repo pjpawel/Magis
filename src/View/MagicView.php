@@ -26,23 +26,23 @@ class MagicView extends AbstractView
      */
     private array $events = [];
     /**
-     * @var list<Tag>
+     * @var Tag[]
      */
     private array $headTags = [];
     /**
-     * @var list<string>
+     * @var string[]
      */
     private array $jsFiles = [];
     /**
-     * @var list<string>
+     * @var string[]
      */
     private array $cssFiles = [];
     /**
-     * @var list<Script>
+     * @var Script[]
      */
     private array $jsBlocks = [];
     /**
-     * @var list<Style>
+     * @var Style[]
      */
     private array $cssBlocks = [];
     private string $language = 'en';
@@ -143,7 +143,7 @@ class MagicView extends AbstractView
     }
 
     /**
-     * @return list<Tag>
+     * @return Tag[]
      */
     public function getHeadTags(): array
     {
@@ -219,7 +219,7 @@ class MagicView extends AbstractView
     }
 
     /**
-     * @return list<string>
+     * @return string[]
      */
     public function getCssFiles(): array
     {
@@ -227,7 +227,7 @@ class MagicView extends AbstractView
     }
 
     /**
-     * @return list<Style>
+     * @return Style[]
      */
     public function getCssBlocks(): array
     {
@@ -235,7 +235,7 @@ class MagicView extends AbstractView
     }
 
     /**
-     * @return list<string>
+     * @return string[]
      */
     public function getJsFiles(): array
     {
@@ -243,7 +243,7 @@ class MagicView extends AbstractView
     }
 
     /**
-     * @return list<Script>
+     * @return Script[]
      */
     public function getJsBlocks(): array
     {
