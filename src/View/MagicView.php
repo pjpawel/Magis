@@ -60,7 +60,7 @@ class MagicView extends AbstractView
     {
         $this->registerTrigger(
             Event::BeforeRun,
-            function (MagicView $view) {
+            function(MagicView $view) {
                 $view->content .= '<!DOCTYPE html><html lang="' . $view->loadLanguage() . '">';
                 $view->content .= '<head><title>' . $view->getTitle() . '</title><meta charset="' . $view->getCharset() . '">';
                 foreach ($view->getHeadTags() as $tag) {
@@ -78,7 +78,7 @@ class MagicView extends AbstractView
         );
         $this->registerTrigger(
             Event::AfterRun,
-            function (MagicView $view) {
+            function(MagicView $view) {
                 foreach ($view->getJsFiles() as $js) {
                     $view->content .= $js . PHP_EOL;
                 }
