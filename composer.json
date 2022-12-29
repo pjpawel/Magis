@@ -1,7 +1,7 @@
 {
   "name": "pjpawel/magis",
   "type": "library",
-  "description": "PHP templates engine",
+  "description": "PHP templating engine",
   "keywords": [
     "templates"
   ],
@@ -20,7 +20,9 @@
     "phpstan/phpstan": "^1.9"
   },
   "autoload": {
-    "psr-4": { "pjpawel\\Magis\\": "src" }
+    "psr-4": {
+      "pjpawel\\Magis\\": "src"
+    }
   },
   "autoload-dev": {
     "psr-4": {
@@ -28,7 +30,8 @@
     }
   },
   "scripts": {
-    "unit": "vendor/bin/phpunit .",
+    "unit": "vendor/bin/phpunit -c phpunit.xml --no-coverage .",
+    "coverage": "php -d xdebug.mode=coverage vendor\\bin\\phpunit --coverage-clover coverage.xml .",
     "stan": "vendor/bin/phpstan analyse",
     "all": [
       "@unit",

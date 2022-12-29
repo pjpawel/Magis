@@ -4,7 +4,7 @@ namespace pjpawel\Magis\Test\View;
 
 use PHPUnit\Framework\TestCase;
 use pjpawel\Magis\Exception\TemplateException;
-use pjpawel\Magis\Resources\EchoService;
+use pjpawel\Magis\Test\resources\EchoService;
 use pjpawel\Magis\View\DirectView;
 
 class DirectViewTest extends TestCase

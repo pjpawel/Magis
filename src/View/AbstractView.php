@@ -45,19 +45,19 @@ abstract class AbstractView
     }
 
     /**
-     * @param Template $template
-     * @param array<string,mixed> $params
-     * @return string
+     * @param string $templatePath
+     * @param array $params
+     * @return bool|string
      * @throws TemplateException
      */
-    protected function renderPhpFile(Template $template, array $params): string
+    protected function renderPhpFile(string $templatePath, array $params): bool|string
     {
         $_obInitialLevel_ = ob_get_level();
         ob_start();
         ob_implicit_flush(false);
         extract($params, EXTR_OVERWRITE);
         try {
-            require $template->getTemplatePath();
+            require $templatePath;
             $buffer = ob_get_clean();
             if ($buffer === false) {
                 throw new Exception('Buffer is not active');
